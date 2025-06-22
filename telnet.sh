@@ -9,15 +9,18 @@ while true; do
   exec 3>&1
   selection=$(dialog \
     --backtitle "DECbox by SPARCie" \
-    --title "Menu" \
+    --title "DECServer sessions" \
     --clear \
     --cancel-label "Exit" \
     --menu "Please select system:" $HEIGHT $WIDTH 4 \
-    "1" "MicroVAX 3900" \
-    "2" "VAX-11" \
-    "3" "PDP-10" \
-    "4" "PDP-11" \
-    "5" "Telnet sessions" \
+    "1" "The DECServer itself" \
+    "2" "Sun T5120" \
+    "3" "Sun T5220" \
+    "4" "Alphaserver DS20E" \
+    "5" "Alphaserver DS25" \
+    "6" "Alphaserver ES47" \
+    "7" "Router" \
+    "8" "Switch" \
     2>&1 1>&3)
   exit_status=$?
   exec 3>&-
@@ -39,27 +42,28 @@ while true; do
       echo "Program terminated."
       ;;
     1 )
-      cd uVAX3900
-      bash uVAX3900.sh
-      cd ..
+      telnet 192.168.16.5 23
       ;;
     2 )
-      cd VAX780
-      bash VAX780.sh
-      cd ..
+      telnet 192.168.16.5 2002
       ;;
     3 )
-      cd PDP10
-      bash PDP10.sh
-      cd ..
+      telnet 192.168.16.5 2003
       ;;
     4 )
-      cd PDP10
-      bash PDP11.sh
-      cd ..
+      telnet 192.168.16.5 2004
       ;;
     5 )
-      bash telnet.sh
+      telnet 192.168.16.5 2005
+      ;;
+    6 )
+      telnet 192.168.16.5 2006
+      ;;
+    7 )
+      telnet 192.168.16.5 2007
+      ;;
+    8 )
+      telnet 192.168.16.5 2008
       ;;
   esac
 done
