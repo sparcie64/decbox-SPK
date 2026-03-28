@@ -16,7 +16,7 @@ while true; do
     "1" "VAX 11/780 AKA HRKV11" \
     "2" "VAX 8600 AKA HRKV86" \
     "3" "MicroVAX 3900 AKA HRKV39" \
-
+    "4" "Serial to HRKAXP" \
     2>&1 1>&3)
   exit_status=$?
   exec 3>&-
@@ -47,9 +47,7 @@ while true; do
       telnet 127.0.0.1 3900 
       ;;
     4 )
-      cd PDP10
-      bash PDP11.sh
-      cd ..
+      sudo minicom -D /dev/ttyS3
       ;;
     5 )
       bash telnet.sh
